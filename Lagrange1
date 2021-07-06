@@ -1,0 +1,17 @@
+import numpy as np
+import sympy as sym
+from sympy import *
+x, y, l = symbols('x y l')
+init_printing()
+import math
+#Max/Min of z = x*y constrain 4x^2+9y^2=36
+f = x*y
+g = 4*x**2+9*y**2-36
+w = f-l*g
+#derivatives
+wx = diff(w,x)
+wy = diff(w,y)
+wl = diff(w,l)
+#critical points
+cp = solve([wx, wy, wl],[x, y, l])
+cp
