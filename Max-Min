@@ -1,0 +1,28 @@
+import numpy as np
+import sympy as sym
+from sympy import *
+x, y, z = symbols('x y z')
+init_printing()
+import math
+f = y**3+3*x**2*y-6*x**2-6*y**2+2
+fx = diff(f,x)
+fy = diff(f,y)
+def maxmin(f):
+  pc = solve([fx, fy], [x, y])
+  for p in pc:
+    df1=diff(f, x, x)
+    df2=diff(f, y, y)
+    df3=diff(f, x, y)
+    d1=df1*df2-df3**2
+    a = d1.subs({x:p[0], y:p[1]})
+    b = df1.subs({x:p[0], y:p[1]})
+    if a > 0 and b > 0:
+      tipo=" is a min"
+    elif a > 0 and b <0:
+        tipo=" is a max"
+    elif a < 0:
+        tipo=" is a saddle point"
+    else:
+       tipo="undefined"
+    print(p,tipo)
+maxmin(f)
