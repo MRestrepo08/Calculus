@@ -1,24 +1,27 @@
 import numpy as np
 import sympy as sym
 from sympy import *
-x, y, l = symbols('x y l')
+x, y, z, l, m, = symbols('x y z l m', real = True)
 init_printing()
-import math
+import mat
 #Max/min
-f = x*y
-g = 4*x**2+9*y**2-36
-w = f-l*g
+f = x*y + y*z
+g1 = x*y-1
+g2 = y**2+z**2-1
+w = f-l*g1-m*g2
 #Partial Derivatives
 wx = diff(w,x)
 wy = diff(w,y)
+wz = diff(w,z)
 wl = diff(w,l)
+wm = diff(w,m)
 #Critical Points
-cp = solve([wx, wy, wl],[x, y, l])
+cp = solve([wx, wy, wz, wl, wm],[x, y, z, l, n])
 cp
 #Function to evaluate
 def maxmin(w):
-  pc = solve([wx, wy, wl], [x, y, l])
+  pc = solve([wx, wy, wz, wl, wm], [x, y, z, l, m])
   for p in pc:
-    a = w.subs({x:p[0], y:p[1], l:p[2]})
+    a = w.subs({x:p[0], y:p[1], z:p[2], l:p[3], m:p[4]})
     print(p, a)
  maxmin(w)
